@@ -331,17 +331,17 @@ void Decoration::hoverMoveEvent(QHoverEvent *event)
         m_menuButtons->unPressAllButtons();
     }
 
-    // const bool wasHovered = m_menuButtons->hovered();
-    // const bool contains = m_menuButtons->geometry().contains(event->posF());
-    // if (!wasHovered && contains) {
-    //     // HoverEnter
-    //     m_menuButtons->setHovered(true);
-    // } else if (wasHovered && !contains) {
-    //     // HoverLeave
-    //     m_menuButtons->setHovered(false);
-    // } else if (wasHovered && contains) {
-    //     // HoverMove
-    // }
+    const bool wasHovered = m_menuButtons->hovered();
+    const bool contains = m_menuButtons->geometry().contains(event->posF());
+    if (!wasHovered && contains) {
+        // HoverEnter
+        m_menuButtons->setHovered(true);
+    } else if (wasHovered && !contains) {
+        // HoverLeave
+        m_menuButtons->setHovered(false);
+    } else if (wasHovered && contains) {
+        // HoverMove
+    }
 }
 
 void Decoration::mouseReleaseEvent(QMouseEvent *event)
@@ -746,7 +746,7 @@ int Decoration::getTextWidth(const QString text, bool showMnemonic) const
     const QRect textRect(titleBarRect());
     int flags = showMnemonic ? Qt::TextShowMnemonic : Qt::TextHideMnemonic;
     const QRect boundingRect = fontMetrics.boundingRect(textRect, flags, text);
-    return boundingRect.width()+8;
+    return boundingRect.width()+6;
 }
 
 //* scoped pointer convenience typedef
